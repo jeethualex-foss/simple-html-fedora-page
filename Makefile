@@ -5,7 +5,7 @@ tag :=
 
 default: login
 
-publish: build deploy
+publish: build clean deploy
 
 login:
 	docker login -u $(user) -p $(pass)
@@ -16,3 +16,6 @@ build:
 
 deploy:
 	docker run --name $(app) -d -p 80:80 $(tag)
+
+clean:
+	docker rm $(app) -f
